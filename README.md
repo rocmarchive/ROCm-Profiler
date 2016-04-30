@@ -27,7 +27,7 @@ is functionally equivalent to the version of the profiler included in [CodeXL 2.
 * [Using with CodeXL 2.0](#CodeXL2.0)
 * [Related Links](#RelatedLinks)
 * [Known Issues](#KnownIssues)
-* [License](Legal/CodeXLEndUserLicenseAgreement-Linux.htm)
+* [License](LICENSE)
 
 <ANAME="WhatsNew">
 ## What's New
