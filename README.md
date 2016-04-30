@@ -204,7 +204,7 @@ new build from within CodeXL.
 The source code of the ROCm Profiler is part of the [CodeXL repository](https://github.com/GPUOpen-Tools/CodeXL). See the [BUILD.md](https://github.com/GPUOpen-Tools/CodeXL/blob/master/BUILD.md) for instructions on building CodeXL. To build just the ROCm Profiler, execute the [backend_build.sh script](https://github.com/GPUOpen-Tools/CodeXL/blob/master/CodeXL/Components/GpuProfiling/Build/backend_build.sh) with the following command line:
  * ./backend_build.sh skip-oclprofiler skip-32bitbuild
 
-By default the build will look for the HSA header files under /opt/rocm/hsa.  To override this location, add the "hsadir" paramter:
+By default the build will look for the HSA header files under /opt/rocm/hsa.  To override this location, add the "hsadir" parameter:
  * ./backend_build.sh skip-oclprofiler skip-32bitbuild hsadir &lt;location&gt; 
 
 <A NAME="RelatedLinks">
