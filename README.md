@@ -29,7 +29,7 @@ is functionally equivalent to the version of the profiler included in [CodeXL 2.
 * [Known Issues](#KnownIssues)
 * [License](LICENSE)
 
-<ANAME="WhatsNew">
+<A NAME="WhatsNew">
 ## What's New
 
 * Profiler executable has been renamed from "sprofile" to "CodeXLGpuProfiler"
