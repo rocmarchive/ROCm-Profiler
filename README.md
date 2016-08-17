@@ -1,12 +1,12 @@
-# ROCm Profiler April 2016 Release
+# ROCm Profiler August 2016 Release
 
 ## Overview
-This release of the ROCm Profiler is compatible with the ROCm 1.0
-release that appears in the following repositories:
+This release of the ROCm Profiler is compatible with the ROCm 1.2
+release that appears in the following GitHub organization:
 
-https://github.com/RadeonOpenCompute/ROCm
+https://github.com/RadeonOpenCompute
 
-This build of the profiler is supported on Carrizo, and Fiji (Boltzmann).  Kaveri
+This build of the profiler is supported on Carrizo, Fiji, and Hawaii.  Kaveri
 support has been deprecated, and while the profiler should still work, there may be some
 issues when using it on Kaveri.
 
@@ -15,11 +15,15 @@ The ROCm Profiler is integrated into the CodeXL GPU Profiler Backend (aka
 Profiler, but it is being made available here as well for those who want to
 use the profiler independently of CodeXL.
 
-Information contained here is specific to CodeXLGpuProfiler version 4.0.12417. This build
-is functionally equivalent to the version of the profiler included in [CodeXL 2.0](https://github.com/GPUOpen-Tools/CodeXL)
+The ROCm Profiler is also installed by default when you follow the ROCm installation
+instructions provided at https://radeonopencompute.github.io/install.html
+
+Information contained here is specific to CodeXLGpuProfiler version 4.0.5672. This build
+is newer that the version of the profiler included in [CodeXL 2.2](https://github.com/GPUOpen-Tools/CodeXL)
 
 ##Table of Contents
 * [What's New](#WhatsNew)
+* [Previous Release Notes](#PreviousRelNotes)
 * [Collecting an Application Trace](#ApplicationTrace)
 * [Collecting GPU Performance Counters](#PerfCounters)
 * [System Setup](#SystemSetup)
@@ -32,12 +36,21 @@ is functionally equivalent to the version of the profiler included in [CodeXL 2.
 
 <A NAME="WhatsNew">
 ## What's New
-
-* The profiler executable has been renamed from "sprofile" to "CodeXLGpuProfiler"
-* Support for ROCm 1.0
-* Support for CodeXL 2.0
-* CodeXL is now open-sourced.  As the ROCm Profiler is a component of CodeXL, the source code of the profiler is part of the [CodeXL repository](https://github.com/GPUOpen-Tools/CodeXL)
+* Support for ROCm 1.2
+* Support for Hawaii GPUs
+* Support for tracing AMD extension APIs
+* Support for CodeXL 2.2
 * Many bug fixes to improve stability and functionality
+
+<A NAME="PreviousRelNotes">
+## Previous Release Notes
+
+* April 2016 Release
+ * The profiler executable has been renamed from "sprofile" to "CodeXLGpuProfiler"
+ * Support for ROCm 1.0
+ * Support for CodeXL 2.0
+ * CodeXL is now open-sourced.  As the ROCm Profiler is a component of CodeXL, the source code of the profiler is part of the [CodeXL repository](https://github.com/GPUOpen-Tools/CodeXL)
+ * Many bug fixes to improve stability and functionality
 
 <A NAME="ApplicationTrace">
 ## Collecting an Application Trace
@@ -97,12 +110,12 @@ You can get more information on the switches mentioned above by reading the Code
 
   `./CodeXLGpuProfiler --hsatrace --help`
   
-A version of the AMDTActivityLogger instrumentation library which is supported
+A version of the CXLActivityLogger instrumentation library which is supported
 by the ROCm profiler is also included in this distribution. Using this API, you
 can annotate your code and have the annotations appear in the timeline UI in
-CodeXL. The latest version of the AMDTActivityLogger library also contains new
+CodeXL. The latest version of the CXLActivityLogger library also contains new
 APIs for controlling the collection of profiling data from within a profiled
-application. Documentation on the AMDTActivityLogger API can be found in the
+application. Documentation on the CXLActivityLogger API can be found in the
 distribution.
 
 You can load an HSA .atp file into CodeXL 2.0 in order to see the application
@@ -166,8 +179,7 @@ when profiling a ROCm application.
 This assumes you are starting from a system where you can run ROCm applications
 outside of the profiler. The information here provides only additional steps
 you need to perform to be able to profile ROCm applications.  Please refer to
-https://github.com/RadeonOpenCompute/ROCm for runtime and driver
-installation information.
+https://radeonopencompute.github.io for runtime and driver installation information.
 
 In order to profile, you will need to make sure that the ROCR runtime
 libraries (libhsa-runtime64.so, libhsa-runtime-ext64.so,
@@ -185,18 +197,18 @@ using the following steps:
  * Execute `./CodeXLGpuProfiler --hsatrace vector_copy`
  * Execute `./CodeXLGpuProfiler --hsapmc vector_copy`
 
-<A NAME="CodeXL2.0">
-## Using this build with CodeXL2.0
+<A NAME="CodeXL2.2">
+## Using this build with CodeXL2.2
 
-This build is compatible with CodeXL 2.0, which can be downloaded from the
+This build is compatible with CodeXL 2.2, which can be downloaded from the
 following location:
 
-    https://github.com/GPUOpen-Tools/CodeXL/releases/tag/v2.0
+    https://github.com/GPUOpen-Tools/CodeXL/releases/tag/v2.2
 
-At this time, the binaries included in this repository are functionally equivalent
-to the binaries included in CodeXL 2.0.  Should this repository be updated with a
-new build, this section will be updated to provide instructions on how to use the
-new build from within CodeXL.
+The binaries included in this repository are newer than the binaries included in
+CodeXL 2.2.  In order to use this version of the profiler from within CodeXL, simply
+copy the files in the bin directory into the main CodeXL directory (to replace the files
+in CodeXL with the same-named files from here).
 
 <A NAME="Building">
 ## Building the ROCm Profiler
@@ -215,4 +227,4 @@ By default the build will look for the HSA header files under /opt/rocm/hsa.  To
 ## Known Issues
 * API Trace and Perf Counter data may be truncated if the application being profiled does not call hsa_shut_down
 * Kernel occupancy information will only be written to disk if the application being profiled calls hsa_shut_down
-* API Trace data does not include any information about AMD-specific extension functions called by the application
+
