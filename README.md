@@ -40,6 +40,7 @@ is newer that the version of the profiler included in [CodeXL 2.2](https://githu
 * Support for Hawaii GPUs
 * Support for tracing AMD extension APIs
 * Support for CodeXL 2.2
+* The ROCm-Profiler is now installed by default with all of ROCm
 * Many bug fixes to improve stability and functionality
 
 <A NAME="PreviousRelNotes">
@@ -186,6 +187,12 @@ libraries (libhsa-runtime64.so, libhsa-runtime-ext64.so,
 libhsa-runtime-tools64.so, and libhsakmt.so) can be found and loaded by the
 application you are profiling. After a default installation, these libraries
 are typically located in /opt/rocm/hsa/lib.
+
+The ROCm Profiler is installed by default when following the installation
+instructions available at https://radeonopencompute.github.io/install.html.
+After successful installation, the profiler can be found in /opt/rocm/profiler.
+There is also a link created at /opt/rocm/bin/rocm-profiler which can be used
+to execute the profiler.
 
 <A NAME="SampleUsage">
 ## Sample Usage
