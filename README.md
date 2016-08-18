@@ -28,7 +28,7 @@ is newer that the version of the profiler included in [CodeXL 2.2](https://githu
 * [Collecting GPU Performance Counters](#PerfCounters)
 * [System Setup](#SystemSetup)
 * [Sample Usage](#SampleUsage)
-* [Using with CodeXL 2.0](#CodeXL2.0)
+* [Using with CodeXL 2.2](#CodeXL2.2)
 * [Building the ROCm Profiler](#Building)
 * [Related Links](#RelatedLinks)
 * [Known Issues](#KnownIssues)
