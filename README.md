@@ -232,6 +232,6 @@ By default the build will look for the HSA header files under /opt/rocm/hsa.  To
 
 <A NAME="KnownIssues">
 ## Known Issues
-* API Trace and Perf Counter data may be truncated if the application being profiled does not call hsa_shut_down
+* API Trace and Perf Counter data may be truncated or missing if the application being profiled does not call hsa_shut_down
 * Kernel occupancy information will only be written to disk if the application being profiled calls hsa_shut_down
 
