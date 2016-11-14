@@ -47,12 +47,12 @@ extern "C" {
 #define AL_DEPRECATED_SUFFIX
 #endif
 
-//------------------------------------------------------------------------------------
-/// AMDTActivityLogger helps users visualize the begin-end markers they defined in the application
-/// in the Timeline. Markers created in different threads will be displayed in different
-/// rows in the Timeline. User can create hierarchical markers by nesting amdtBeginMarker
-/// calls.
-//------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/// AMDTActivityLogger allows you to annotate the timeline with additional
+/// application-defined information. Markers created in different threads will
+/// be displayed in different rows in the Timeline. Hierarchical markers can be
+/// created by nesting amdtBeginMarker calls.
+//-----------------------------------------------------------------------------
 
 /// Initialize AMDTActivityLogger.
 /// \return status code
@@ -63,23 +63,26 @@ extern int AL_API_CALL amdtInitializeActivityLogger();
 /// \param szMarkerName Marker name
 /// \param szGroupName Group name, Optional, Pass in NULL to use default group name
 ///        If group name is specified, additional sub-branch will be created under PerfMarker branch
-///        in Timeline and all markers that belongs to the group will be displayed in the group branch.
-/// \param szUserString User string, Optional, Pass in NULL to use default color and no user specific string.
+///        in Timeline and all markers that belong to the group will be displayed in the group branch.
+/// \param szUserString Currently ignored -- reserved for future use (see below for one expected future use)
+///        User string, Optional, Pass in NULL to use default color and no user specific string.
 ///        If User string is specified it should be formatted as a XML string. Optional tag is Color, as in the following example
-///        amdtBeginMarker("MyMarker", "MyGroup", "<Color Hex="FF0000"/>\n<UserComment Comment="Starting major calulcation"/>"
-///        If you choose the textual output option, the user string will be included in a User String tag of the XML output, as follows:
-///        <BeginMarker Record=“3” Name="MyMarker" Group="MyGroup" Time="18681220406574">
-///            <User>
-///                <Color Hex="FF0000"/>
-///                <UserComment Comment="Starting major calculation"/>
-///            </User>
-///        </BeginMarker>
+///        amdtBeginMarker("MyMarker", "MyGroup", "<Color Hex="FF0000"/>\n<UserComment Comment="Starting major calulcation"/>")
 /// \return status code
 extern int AL_API_CALL amdtBeginMarker(const char* szMarkerName, const char* szGroupName, const char* szUserString);
 
 /// End AMDTActivityLogger block
 /// \return status code
 extern int AL_API_CALL amdtEndMarker();
+
+/// End AMDTActivityLogger block
+/// \param szMarkerName Marker name -- the name will replace the name passed in to amdtBeginMarker
+/// \param szGroupName Group name, Optional, Pass in NULL to use default group name
+///        If group name is specified, additional sub-branch will be created under PerfMarker branch
+///        in Timeline and all markers that belong to the group will be displayed in the group branch.
+/// \param szUserString Currently ignored -- reserved for future use (see amdtBeginMarker for more info)
+/// \return status code -- it is not valid to pass in a non-empty szGroupName with an empty szMarkerName
+extern int AL_API_CALL amdtEndMarkerEx(const char* szMarkerName, const char* szGroupName, const char* szUserString);
 
 /// Finalize AMDTActivityLogger, Save collected data in specified output file.
 /// Failed to call the function will result in no AMDTActivityLogger file is generated.
