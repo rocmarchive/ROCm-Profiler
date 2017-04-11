@@ -25,19 +25,18 @@ is newer than the version of the profiler included in [CodeXL 2.2](https://githu
 It is also slightly newer than the version of the profiler included in ROCm 1.3.
 
 ##Table of Contents
-* [What's New](#WhatsNew)
-* [Previous Release Notes](#PreviousRelNotes)
-* [Collecting an Application Trace](#ApplicationTrace)
-* [Collecting GPU Performance Counters](#PerfCounters)
-* [System Setup](#SystemSetup)
-* [Sample Usage](#SampleUsage)
-* [Using with CodeXL 2.2](#CodeXL2.2)
-* [Building the ROCm Profiler](#Building)
-* [Related Links](#RelatedLinks)
-* [Known Issues](#KnownIssues)
+* [What's New](#whats-new)
+* [Previous Release Notes](#previous-release-notes)
+* [Collecting an Application Trace](#collecting-an-application-trace)
+* [Collecting GPU Performance Counters](#collecting-gpu-performance-counters)
+* [System Setup](#system-setup)
+* [Sample Usage](#sample-usage)
+* [Using with CodeXL 2.2](#using-this-build-with-codexl22)
+* [Building the ROCm Profiler](#building-the-rocm-profiler)
+* [Related Links](#related-links)
+* [Known Issues](#known-issues)
 * [License](LICENSE)
 
-<A NAME="WhatsNew">
 ## What's New
 * Support for collecting timing data for data transfers initiated by a call to hsa_amd_memory_async_copy
 * Support for collecting an AQL Packet trace (using --hsaaqlpackettrace command-line switch). This requires the use of ROCm 1.3
@@ -48,7 +47,6 @@ It is also slightly newer than the version of the profiler included in ROCm 1.3.
 * Support for better control over which parts of an application are profiled (using --startdelaty and --profileduration switches)
 * When installing the rocm-profiler package (.deb or .rpm), a set of single-pass counter files will be automatically generated into /opt/rocm/profiler/counterfiles. These counter files can be used for whole-application replay (see [Known Issues](#KnownIssues) for a known problem with this)
 
-<A NAME="PreviousRelNotes">
 ## Previous Release Notes
 * August 2016 Release
  * Support for ROCm 1.2
@@ -64,7 +62,6 @@ It is also slightly newer than the version of the profiler included in ROCm 1.3.
  * CodeXL is now open-sourced. As the ROCm Profiler is a component of CodeXL, the source code of the profiler is part of the [CodeXL repository](https://github.com/GPUOpen-Tools/CodeXL)
  * Many bug fixes to improve stability and functionality
 
-<A NAME="ApplicationTrace">
 ## Collecting an Application Trace
 
 To collect an application trace with kernel timestamps:
@@ -139,7 +136,6 @@ distribution.
 You can load an HSA .atp file into CodeXL 2.2 in order to see the application
 timeline. See information below on where to download CodeXL from.
 
-<A NAME="PerfCounters">
 ## Collecting GPU Performance Counters
 
 To collect GPU performance counters:
@@ -191,7 +187,6 @@ specify a different set of counters for each profile run. Because of this
 restriction, the `--singlepass` and `--nogputime` switches are always enabled
 when profiling a ROCm application.
 
-<A NAME="SystemSetup">
 ## System Setup 
 
 This assumes you are starting from a system where you can run ROCm applications
@@ -211,7 +206,6 @@ After successful installation, the profiler can be found in /opt/rocm/profiler.
 There is also a link created at /opt/rocm/bin/rocm-profiler which can be used
 to execute the profiler.
 
-<A NAME="SampleUsage">
 ## Sample Usage
 
 You can profile the vector_copy sample included in the ROCm release (typically in /opt/rocm/hsa/sample)
@@ -221,7 +215,6 @@ using the following steps:
  * Execute `./CodeXLGpuProfiler --hsatrace vector_copy`
  * Execute `./CodeXLGpuProfiler --hsapmc vector_copy`
 
-<A NAME="CodeXL2.2">
 ## Using this build with CodeXL2.2
 
 This build is compatible with CodeXL 2.2, which can be downloaded from the
@@ -238,7 +231,6 @@ In order to see data transfer timing info on the timeline in CodeXL, a version n
 2.2 is required. For now, you will need to clone and build CodeXL using the master branch
 in order to see data transfers on the timeline.
 
-<A NAME="Building">
 ## Building the ROCm Profiler
 
 The source code of the ROCm Profiler is part of the [CodeXL repository](https://github.com/GPUOpen-Tools/CodeXL). See the [BUILD.md](https://github.com/GPUOpen-Tools/CodeXL/blob/master/BUILD.md) for instructions on building CodeXL. To build just the ROCm Profiler, execute the [backend_build.sh script](https://github.com/GPUOpen-Tools/CodeXL/blob/master/CodeXL/Components/GpuProfiling/Build/backend_build.sh) with the following command line:
@@ -247,11 +239,9 @@ The source code of the ROCm Profiler is part of the [CodeXL repository](https://
 By default the build will look for the HSA header files under /opt/rocm/hsa. To override this location, add the "hsadir" parameter:
  * ./backend_build.sh skip-oclprofiler skip-32bitbuild hsadir &lt;location&gt; 
 
-<A NAME="RelatedLinks">
 ## Related links
 [ROCm Profiler blog post](http://gpuopen.com/getting-up-to-speed-with-the-codexl-gpu-profiler-and-radeon-open-compute/)
 
-<A NAME="KnownIssues">
 ## Known Issues
 * API Trace and Perf Counter data may be truncated or missing if the application being profiled does not call hsa_shut_down
 * Kernel occupancy information will only be written to disk if the application being profiled calls hsa_shut_down
