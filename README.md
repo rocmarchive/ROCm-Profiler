@@ -24,7 +24,7 @@ Information contained here is specific to CodeXLGpuProfiler version 4.0.6036. Th
 is newer than the version of the profiler included in [CodeXL 2.2](https://github.com/GPUOpen-Tools/CodeXL).
 It is also slightly newer than the version of the profiler included in ROCm 1.3.
 
-##Table of Contents
+## Table of Contents
 * [What's New](#whats-new)
 * [Previous Release Notes](#previous-release-notes)
 * [Collecting an Application Trace](#collecting-an-application-trace)
