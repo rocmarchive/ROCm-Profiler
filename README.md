@@ -1,3 +1,5 @@
+# The ROCm Profiler is now available at https://github.com/GPUOpen-Tools/RCP
+
 # ROCm Profiler November 2016 Release
 
 ## Overview
